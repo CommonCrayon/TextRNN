@@ -1,3 +1,4 @@
+# Importing modules
 from flask import Flask, request
 import tensorflow as tf
 import numpy as np
@@ -35,8 +36,8 @@ styles = '''
         margin-bottom: 1em;
         width: 100%;
         max-width: 600px;
-        height: 5em;
-        overflow-y: scroll;
+        height: 10em;
+        overflow: auto;
     }
 
     input[type="submit"] {
@@ -82,6 +83,7 @@ app = Flask(__name__)
 # Define a Flask route for the prediction
 @app.route('/', methods=['GET', 'POST'])
 def predict():
+    # When the Predict button has been submitted
     if request.method == 'POST':
         # Get the text data from the POST request
         data = request.form['data']
@@ -115,14 +117,14 @@ def predict():
                         <p>Prediction: {response}</p>
                     </div>
                     <footer>
-                        <p>&copy; Made by Group 12 | NLP UTS 2023</p>
+                        <p style="color:white">&copy; Made by Group 12 | NLP UTS 2023</p>
                     </footer>
                 </body>
             </html>
         '''
     
 
-    # Return a simple HTML form for GET requests
+    # Return the webpage when a form request hasn't been sent
     return f'''
         <html>
             <head>
@@ -139,7 +141,7 @@ def predict():
                     </form>
                 </div>
                 <footer>
-                        <p>&copy; Made by Group 12 | NLP UTS 2023</p>
+                        <p style="color:white">&copy; Made by Group 12 | NLP UTS 2023</p>
                 </footer>
             </body>
         </html>
